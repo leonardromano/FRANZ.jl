@@ -112,7 +112,7 @@ Bug reports, feature requests, and pull requests are welcome. If you encounter u
 
 If you use FRANZ in published work, please cite the accompanying publication:
 
-> DOI: [![DOI](https://zenodo.org/badge/1258322843.svg)](https://doi.org/10.5281/zenodo.21076525)
+[![DOI](https://zenodo.org/badge/1258322843.svg)](https://doi.org/10.5281/zenodo.21076525)
 
 ## License
 
