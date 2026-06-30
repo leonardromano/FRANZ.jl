@@ -12,4 +12,5 @@ makedocs(
 deploydocs(
     repo = "github.com/leonardromano/FRANZ.jl.git",
     devbranch = "main",
+    push_preview = true,
 )
