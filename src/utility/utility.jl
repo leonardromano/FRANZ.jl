@@ -2,14 +2,6 @@
 # Utility functions useful for numerical integration, setting up arrays, array manipulations etc.
 
 ############################################################################################################################################################
-# Statistics
-
-"Check if a number is NaN, Inf or negative"
-isbad(x::Real) = isnan(x) || isinf(x)
-
-hasbad(a::Array{<:Number}) = sum(isbad.(a)) .> 0
-
-############################################################################################################################################################
 # Unit vectors on sphere
 
 "Return the radial unit vector on a sphere corresponding to a given direction"

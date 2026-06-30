@@ -11,7 +11,10 @@ end
     # 1e51 erg
     # 1 Msol ejecta
     # After 1 Myr
-    t, x, v, n, M, f = numerical_solution([1.0], cosθ=0.0, ϕ=0.0)
+    env_test = Environment(density=(x::Vector{<:Real}, t::Real) -> 1.0)
+    mdl_test = Model(E_51=(t::Real) -> 1.0)
+
+    t, x, v, n, M, f = numerical_solution([1.0], model=mdl_test, environment=env_test, cosθ=0.0, ϕ=0.0)
     R    = x[1][1]
     R_ST = 81.8523973189277     # analytical solution
     res  = abs(R - R_ST) / R_ST
