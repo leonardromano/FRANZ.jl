@@ -35,6 +35,8 @@ https://docs.julialang.org/
 
 ### Installing FRANZ
 
+**Disclaimer**: The workflow described below is currently not yet supported. Until the package has been registered with the official Julia registries, please simply `git clone` this package to install it.
+
 Once Julia is installed, start a Julia session and install the package:
 
 ```julia
