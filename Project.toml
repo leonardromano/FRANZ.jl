@@ -1,7 +1,7 @@
 name = "FRANZ"
 uuid = "758eb130-e0ca-49bb-a939-82fc9165136b"
 authors = ["Leonard Romano"]
-version = "1.0.0"
+version = "1.0.1"
 license = "MIT"
 
 [deps]
