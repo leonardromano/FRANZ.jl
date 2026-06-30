@@ -1,5 +1,10 @@
 # FRANZ
 
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://leonardromano.github.io/FRANZ.jl/dev/)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://leonardromano.github.io/FRANZ.jl/stable/)
+[![CI](https://github.com/leonardromano/FRANZ.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/leonardromano/FRANZ.jl/actions/workflows/CI.yml)
+[![codecov](https://codecov.io/gh/leonardromano/FRANZ.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/leonardromano/FRANZ.jl)
+
 FRANZ (FRamework for ANalytical one-Zone blastwave dynamics) is a Julia package for modelling the evolution of astrophysical blastwaves using analytical and semi-analytical methods.
 
 The framework is designed primarily for studying supernova remnants (SNRs) evolving in complex galactic environments. Rather than performing computationally expensive hydrodynamical simulations, FRANZ models blastwave evolution using a one-zone ordinary differential equation (ODE) approach based on the thin-shell and sector approximations. Each angular sector evolves independently, allowing different parts of the blastwave to experience different environmental conditions while remaining computationally inexpensive.
