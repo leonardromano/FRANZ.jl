@@ -10,7 +10,7 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/leonardromano/FRANZ.jl.git",
+    repo = "github.com/leonardromano/FRANZ.jl",
     devbranch = "main",
     push_preview = true,
 )
