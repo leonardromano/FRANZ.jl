@@ -1,5 +1,6 @@
 # FRANZ
 
+[![DOI](https://zenodo.org/badge/1258322843.svg)](https://doi.org/10.5281/zenodo.21076525)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://leonardromano.github.io/FRANZ.jl/dev/)
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://leonardromano.github.io/FRANZ.jl/stable/)
 [![CI](https://github.com/leonardromano/FRANZ.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/leonardromano/FRANZ.jl/actions/workflows/CI.yml)
