@@ -14,10 +14,9 @@ FRANZ aims to bridge the gap between simple analytical solutions and full numeri
 
 ## Features
 
-* Analytical one-zone model for blastwave evolution
-* Thin-shell and sector approximations
-* Modular framework for incorporating additional physics
-* Rapid exploration of parameter space
+* Analytical one-zone model for blastwave evolution based on thin-shell and sector approximations  
+* Modular framework for incorporating additional physics   
+* Fully local formulation, allowing to evolve only parts of the full shock surface  
 * Minimal package dependencies
 * Designed for both research and teaching
 
