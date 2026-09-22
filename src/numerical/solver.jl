@@ -203,7 +203,8 @@ end
 function numerical_full(t_Myr::Vector{<:Real}; t0::Real=0.0, u_ini::Vector{<:Real}=rand(21), # state variables and initial time
                         physics::Physics=Physics(),                                          # physics model
                         env::Environment=Environment(),                                      # environment model
-                        dlogt::Real=1e-2, δα::Real=SMALL, Sedov::Bool=true)                  # Numerical criteria
+                        dlogt::Real=1e-2, δα::Real=SMALL, Sedov::Bool=true,                  # Numerical criteria
+                        cooling_threshold::Real=0.1)                                         # Cooling threshold for Sedov phase                    
 
     # get number of snapshots
     N = length(t_Myr)
@@ -352,7 +353,7 @@ function numerical_full(t_Myr::Vector{<:Real}; t0::Real=0.0, u_ini::Vector{<:Rea
         u1  = integrate_EoM(u0, t0, t1, physics=physics, env=env, Sedov=Sedov, δα=δα)
 
         # Sedov phase ends once cooling losses start to become dominant
-        if Sedov && (u1[9] >= 0.1 * physics.energy_injection(t1))
+        if Sedov && (u1[9] >= cooling_threshold * physics.energy_injection(t1))
             Sedov = false
         end
     end

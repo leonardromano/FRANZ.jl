@@ -51,6 +51,7 @@ Each Healpix pixel defines one radial direction.
 - `map` : Healpix map defining the angular sampling.
 - `dlogt=1e-2` : Internal logarithmic timestep.
 - `δα=SMALL` : Surface regularization parameter.
+- `cooling_threshold=0.1` : Fraction of radiated energy above which Sedov phase is terminated.
 
 # Returns
 
@@ -103,7 +104,8 @@ function numerical_solution(t_Myr::Vector{<:Real},                          # Sn
                             directions::Vector{<:Tuple{<:Real, <:Real}};    # Sampling of shock surface                                                      
                             model::Model=Model(),                           # model parameters
                             environment::Environment=Environment(),         # model for environment                                                                        
-                            dlogt::Real=1e-2, δα::Real=SMALL)               # Time resolution
+                            dlogt::Real=1e-2, δα::Real=SMALL,               # Time resolution
+                            cooling_threshold::Real=0.1)                    # Cooling threshold for Sedov phase 
     # setup problem
     x0, v0, t0, r0, M0, E_0, env, physics, Sedov = setup_problem(model, t_Myr[1], environment=environment)
 
@@ -141,7 +143,8 @@ function numerical_solution(t_Myr::Vector{<:Real},                          # Sn
         u_ini = [x_0..., v_0..., M0, E_0..., ∂_θ..., ∂_φ..., d∂_θ..., d∂_φ...]
 
         # solve numerical time evolution
-        t_out, pos_time, vel_time, dA_time, M_time, f[idir] = numerical_full(t_Myr, t0=t0, u_ini=u_ini, physics=deepcopy(physics), env=env, dlogt=dlogt, δα=δα, Sedov=Sedov)
+        t_out, pos_time, vel_time, dA_time, M_time, f[idir] = numerical_full(t_Myr, t0=t0, u_ini=u_ini, physics=deepcopy(physics), env=env, 
+                                                                             dlogt=dlogt, δα=δα, Sedov=Sedov, cooling_threshold=cooling_threshold)
         
         # assign vectors
         for it in eachindex(t_Myr)
@@ -168,7 +171,7 @@ function numerical_solution(t_Myr::Vector{<:Real};                              
                             cosθ::Union{Nothing, AbstractRange, Vector{<:Real}, Real}=nothing,                 
                             ϕ::Union{Nothing, AbstractRange, Vector{<:Real}, Real}=nothing,              # Sampling of shock surface
                             map::Union{Nothing, AbstractHealpixMap}=nothing,                             # Healpix map: shorthand notation for fullsky coverage
-                            dlogt::Real=1e-2, δα::Real=SMALL)
+                            dlogt::Real=1e-2, δα::Real=SMALL, cooling_threshold::Real=0.1)
 
     # some checks
     map_exists   = !(isnothing(map))
@@ -186,5 +189,5 @@ function numerical_solution(t_Myr::Vector{<:Real};                              
     # precompute initial direction coordinates
     directions = map_exists ? [pix2ang(map, ihp) for ihp in eachindex(map)] : [(acos(cθ), φ) for cθ in cosθ for φ in ϕ]
 
-    return numerical_solution(t_Myr, directions, model=model, environment=environment, dlogt=dlogt, δα=δα)
+    return numerical_solution(t_Myr, directions, model=model, environment=environment, dlogt=dlogt, δα=δα, cooling_threshold=cooling_threshold)
 end
