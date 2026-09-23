@@ -112,7 +112,7 @@ version = "1.6.0"
 
 [[deps.FRANZ]]
 deps = ["Healpix", "LinearAlgebra"]
-git-tree-sha1 = "38368c81ac2e4fd38207537eff6fe46d22c7c2b1"
+git-tree-sha1 = "b4da93e853c6ebc73c5bec0f36648bddabbbbaaa"
 repo-rev = "main"
 repo-url = "git@github.com:leonardromano/FRANZ.jl.git"
 uuid = "758eb130-e0ca-49bb-a939-82fc9165136b"
