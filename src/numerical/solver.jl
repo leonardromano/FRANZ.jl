@@ -75,11 +75,14 @@ function du_dt(u::Vector{<:Real}, t::Real, dt::Real; rates::Rates=Rates(), physi
     # get Mass & density
     M = u[7]
     ρ = env.density(x, t)
+
+    # acceleration due to change in external Velocity (shear)
+    dv_ext_dt = env.∇v_ext(x, t) * dx_dt + env.dv_ext_dt(x, t)
     
     # Energy gain and loss rates
     dEgain_dt = Sedov ? rates.Edot : 0.0
     dEloss_dt = Sedov ? physics.cooling(ρ, T_shock(v)) * ρ * M : 0.0
-    dE_dt     = dEgain_dt - dEloss_dt + M * dx_dt'env.g_ext(x, t)
+    dE_dt     = dEgain_dt - dEloss_dt + M * dot(vel, env.g_ext(x, t) - dv_ext_dt)
 
     # net range of energy due to CRs
     dE_CR_dt = rates.Edot_CR

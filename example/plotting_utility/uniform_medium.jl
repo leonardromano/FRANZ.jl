@@ -2,9 +2,9 @@
 # function to run a model and return its output in a nice format for plotting
 
 "Return the output of the model for a uniform medium"
-function run_model_uniform(model::Model, time::Union{AbstractRange{<:Real}, Vector{<:Real}}; N_SN=1.0)
+function run_model_uniform(model::Model, time::Union{AbstractRange{<:Real}, Vector{<:Real}}; N_SN=1.0, cooling_threshold::Real=0.1)
     # run model
-    t, x, v, n, M, f = numerical_solution(time, model=model, cosθ=0.0, ϕ=0.0)
+    t, x, v, n, M, f = numerical_solution(time, model=model, cosθ=0.0, ϕ=0.0, cooling_threshold=cooling_threshold)
 
     # number of SNe as a function of time
     Num_SN = input2func(N_SN)
